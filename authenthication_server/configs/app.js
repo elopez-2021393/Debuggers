@@ -70,26 +70,34 @@ const seederAdmin = async () => {
     }
 };
 
-export const initServer = async () => {
+let seeded = false;
+
+// Construye y devuelve la app de Express (síncrono, apto para exportar en Vercel)
+export const buildApp = () => {
     const app = express();
-    const PORT = process.env.PORT;
     app.set('trust proxy', 1);
 
-    try {
-        middlewares(app);
-        await dbConnection();
-        await seederAdmin();
+    middlewares(app);
 
-        routes(app);
-        app.use(errorHandler);
+    // Garantiza conexión a Mongo (cacheada) antes de resolver cualquier ruta
+    app.use(async (req, res, next) => {
+        try {
+            await dbConnection();
+            if (!seeded) {
+                seeded = true;
+                seederAdmin().catch(e => console.error('Seeder error:', e.message));
+            }
+            next();
+        } catch (e) {
+            res.status(503).json({
+                success: false,
+                message: 'No se pudo conectar a la base de datos'
+            });
+        }
+    });
 
-        app.listen(PORT, () => {
-            console.log(`Debuggers Eats Server running on port: ${PORT}`);
-            console.log(`Health check: http://localhost:${PORT}${BASE_PATH}/health`);
-            console.log(`Swagger docs: http://localhost:${PORT}${BASE_PATH}/api-docs`);
-        });
-    } catch (e) {
-        console.error(`Error al iniciar el servidor: ${e.message}`);
-        process.exit(1);
-    }
+    routes(app);
+    app.use(errorHandler);
+
+    return app;
 };
