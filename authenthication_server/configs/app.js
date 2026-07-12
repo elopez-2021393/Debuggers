@@ -17,6 +17,22 @@ import { swaggerSpec, swaggerUi } from "./documentation.js";
 const BASE_PATH = '/debuggersEatsAdmin/v1';
 
 const routes = (app) => {
+    app.get('/', (req, res) => {
+        res.status(200).json({
+            success: true,
+            service: 'Debuggers Eats Authentication API',
+            version: '1.0.0',
+            status: 'online',
+            message: 'API en línea. Usa los endpoints documentados abajo.',
+            endpoints: {
+                health: `${BASE_PATH}/health`,
+                auth: `${BASE_PATH}/auth`,
+                docs: `${BASE_PATH}/api-docs`
+            },
+            timestamp: new Date().toISOString()
+        });
+    });
+
     app.use(`${BASE_PATH}/auth`, authRoutes);
     app.use(`${BASE_PATH}/api-docs`, swaggerUi.serve, swaggerUi.setup(swaggerSpec));
     app.get(`${BASE_PATH}/health`, (req, res) => {
