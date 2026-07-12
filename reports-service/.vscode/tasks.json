@@ -1,0 +1,43 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "build",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "build",
+                "${workspaceFolder}/ReportService.sln"
+            ],
+            "problemMatcher": "$msCompile",
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared"
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "restore",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "restore",
+                "${workspaceFolder}/ReportService.sln"
+            ],
+            "problemMatcher": []
+        },
+        {
+            "label": "clean",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "clean",
+                "${workspaceFolder}/ReportService.sln"
+            ],
+            "problemMatcher": []
+        }
+    ]
+}

@@ -1,0 +1,22 @@
+{
+    "name": "debuggerseats",
+    "version": "1.0.0",
+    "description": "Package JSON que ayudará a levantar a todos los servicios del proyecto desde una sola consola.",
+    "private": true,
+    "scripts": {
+        "install:all": "cd add-restaurant-service && pnpm install && cd ../authenthication_server && pnpm install && cd ../client-admin && pnpm install && cd ../client-user && pnpm install",
+        "start": "concurrently -k -n \"AUTH,RESTAURANTS,REPORTS,CLIENT,CLIENT-USER\" -c \"cyan,blue,yellow,green,magenta\" \"pnpm run auth\" \"pnpm run restaurants\" \"pnpm run reports\" \"pnpm run client\" \"pnpm run client-user\"",
+        "reports": "cd reports-service/src/ReportService.Api && dotnet run",
+        "restaurants": "cd add-restaurant-service && pnpm run dev",
+        "auth": "cd authenthication_server && pnpm run dev",
+        "client": "cd client-admin && pnpm run dev",
+        "client-user": "cd client-user && pnpm run start"
+    },
+    "keywords": [],
+    "author": "Los Debuggers",
+    "license": "ISC",
+    "packageManager": "pnpm@10.28.0",
+    "devDependencies": {
+        "concurrently": "^9.2.1"
+    }
+}
