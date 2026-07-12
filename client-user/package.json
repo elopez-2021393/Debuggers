@@ -1,0 +1,40 @@
+{
+  "name": "client-user",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "packageManager": "pnpm@9.0.0",
+  "scripts": {
+    "start": "expo start",
+    "android": "expo start --android",
+    "ios": "expo start --ios",
+    "web": "expo start --web"
+  },
+  "dependencies": {
+    "@expo/vector-icons": "^15.0.0",
+    "@react-native-async-storage/async-storage": "^2.0.0",
+    "@react-native-community/datetimepicker": "^8.6.0",
+    "@react-navigation/bottom-tabs": "^7.0.0",
+    "@react-navigation/native": "^7.0.0",
+    "@react-navigation/native-stack": "^7.0.0",
+    "axios": "^1.7.0",
+    "expo": "~55.0.0",
+    "expo-image-picker": "~55.0.20",
+    "expo-linear-gradient": "^55.0.14",
+    "expo-print": "^55.0.15",
+    "expo-secure-store": "~55.0.14",
+    "expo-sharing": "^55.0.20",
+    "expo-status-bar": "~55.0.6",
+    "react": "19.2.0",
+    "react-hook-form": "^7.53.0",
+    "react-native": "0.83.6",
+    "react-native-gesture-handler": "~2.30.1",
+    "react-native-safe-area-context": "~5.6.2",
+    "react-native-screens": "~4.23.0",
+    "zustand": "^5.0.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.25.0"
+  },
+  "private": true
+}
