@@ -30,7 +30,7 @@ const routes = (app) => {
             endpoints: {
                 health: `${BASE_PATH}/health`,
                 restaurants: `${BASE_PATH}/restaurants`,
-                docs: `${BASE_PATH}/api-docs`
+                docs: `${BASE_PATH}/api-docs`//Hola
             },
             timestamp: new Date().toISOString()
         });
